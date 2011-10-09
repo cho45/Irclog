@@ -9,9 +9,18 @@ use constant root => dir(".")->absolute;
 
 common +{
 	appname => 'irclog',
+	session_dir => '/tmp/irclog.session',
 };
 
-config development => {
+config development => do {
+	my $file   = root->file("development.conf");
+	my $config = do "$file";
+	unless ($config) {
+		die "Couldn't parse $file: $@" if $@;
+		die "Couldn't do $file: $!"    unless defined $config;
+		die "Couldn't run $file: $!"   unless $config;
+	}
+	$config;
 };
 
 config staging => {

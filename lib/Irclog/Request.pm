@@ -27,5 +27,10 @@ sub path_parameters {
     $self->{_path_parameters} ||= Hash::MultiValue->new;
 }
 
+sub is_xmlhttprequest {
+	my ($self) = @_;
+	my $requested_with = $self->header('X-Requested-With') || '';
+	$requested_with eq 'XMLHttpRequest';
+}
 
 1;

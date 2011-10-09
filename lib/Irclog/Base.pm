@@ -8,10 +8,13 @@ use parent qw(Exporter::Lite);
 use Router::Simple;
 use Try::Tiny;
 
+use Plack::Session;
+
 use Irclog::Config;
 use Irclog::Request;
 use Irclog::Response;
 use Irclog::Exception;
+use Irclog::Views;
 
 our @EXPORT = qw(config route throw);
 
@@ -81,6 +84,22 @@ sub run {
 
 sub req { $_[0]->{req} }
 sub res { $_[0]->{res} }
+
+sub session {
+	$_[0]->{session} //= do {
+		$_[0]->{req}->env->{'psgix.session'} ? Plack::Session->new($_[0]->{req}->env) : ''
+	};
+}
+
+sub stash {
+	$_[0]->{stash} ||= {};
+	$_[0]->{stash};
+}
+
+sub user {
+	my ($r) = @_;
+	$r->session->get('oauth_hatena_user_info');
+}
 
 1;
 __END__

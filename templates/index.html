@@ -1,3 +1,9 @@
-[%- WRAPPER "_wrapper.html" WITH title = "" id="top" %]
+[%- WRAPPER "_wrapper.html" %]
+
+[% IF r.user %]
+ログイン中: <img src="[% r.user.profile_image_url %]" width="16" height="16"/>[% r.user.url_name %]
+[% ELSE %]
+<a href="/login/hatena">ログイン</a>
+[% END %]
 
 [%- END -%]
