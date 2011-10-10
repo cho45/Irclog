@@ -17,6 +17,7 @@ use Plack::Session::Store::File;
 use Data::MessagePack;
 
 use Irclog;
+use Irclog::Login;
 
 my $session_dir = dir(config->param('session_dir'))->absolute;
 $session_dir->mkpath;
