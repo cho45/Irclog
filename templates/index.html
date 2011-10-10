@@ -1,9 +1,9 @@
 [%- WRAPPER "_wrapper.html" %]
 
-[% IF r.user %]
-ログイン中: <img src="[% r.user.profile_image_url %]" width="16" height="16"/>[% r.user.url_name %]
-[% ELSE %]
-<a href="/login/hatena">ログイン</a>
+[% FOR channel IN auth %]
+<ul>
+	<li><a href="/log/[% channel %]/recent">#[% channel %]</a></li>
+</ul>
 [% END %]
 
 [%- END -%]

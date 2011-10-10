@@ -25,7 +25,7 @@ my $Xslate = Text::Xslate->new(
 
 sub html {
 	my ($r, $name, $vars) = @_;
-	my $vars =  {
+	$vars = {
 		r => $r,
 		%{ $r->stash },
 		%{ $vars || {} },

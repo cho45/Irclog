@@ -1,0 +1,22 @@
+[%- WRAPPER "_wrapper.html" %]
+
+<p class="pager">
+<a href="/log/[% channel %]/[% prev_date.strftime("%Y-%m-%d") %]">[% prev_date.strftime("%Y-%m-%d") %]</a>
+[% date.strftime("%Y-%m-%d") %]
+<a href="/log/[% channel %]/[% next_date.strftime("%Y-%m-%d") %]">[% next_date.strftime("%Y-%m-%d") %]</a>
+<a href="/log/[% channel %]/recent">recent</a>
+</p>
+
+<table>
+	<tbody>
+	[% FOR line IN log %]
+	<tr>
+		<td class="time">[% line.hour %]:[% line.minute %]:[% line.second %]</td>
+		<td class="nick">[% line.nick %]</td>
+		<td class="message">[% line.message %]</td>
+	</tr>
+	[% END %]
+	</tbody>
+</table>
+
+[% END %]

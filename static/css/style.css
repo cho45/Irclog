@@ -1,0 +1,80 @@
+
+html, body {
+	margin: 0;
+	padding: 0;
+
+	background: #222;
+	color: #fff;
+	line-height: 1.66;
+}
+
+a:link {
+	color: #c00;
+}
+
+a:visited {
+	color: #900;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+table {
+	width: 100%;
+	background: #111;
+	padding: 1em 0;
+
+	border-radius: 1em;
+	text-shadow: 0 0 2px #000;
+	-moz-box-shadow: 0 0 1px #000;
+	-webkit-box-shadow: 0 0 1px #000;
+}
+
+td {
+	padding: 0 1em;
+}
+
+td.time {
+	width: 5em;
+}
+
+td.nick {
+	width: 5em;
+	overflow: hidden;
+}
+
+#top {
+	max-width: 60em;
+	margin: 0 auto;
+	position: relative;
+}
+
+#top .user {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#top .user img {
+	vertical-align: middle;
+}
+
+#top #header a {
+	text-decoration: none;
+}
+
+#content {
+	max-width: 60em;
+	margin: 0 auto;
+}
+
+.pager {
+	text-align: center;
+	padding: 1em;
+}
+
+.pager a {
+	display: inline-block;
+	padding: 1em;
+}

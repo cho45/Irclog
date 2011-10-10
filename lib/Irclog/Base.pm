@@ -101,5 +101,32 @@ sub user {
 	$r->session->get('oauth_hatena_user_info');
 }
 
+sub require_user {
+	my ($r) = @_;
+	$r->user or throw(code => 302, message => 'User required', location => '/login/hatena');
+}
+
+sub require_auth {
+	my ($r, $channel) = @_;
+	my $user = $r->require_user;
+	my $name = $user->{url_name};
+	my @channels = 
+		map {
+			s/^#//;
+			$_;
+		}
+		@{ config->param('ircauth')->{$name} || [] }
+	;
+
+	if (defined($channel)) {
+		$channel =~ s/^#//;
+		@channels = grep { $channel eq $_ } @channels;
+	}
+
+	@channels or throw(code => 403, message => 'No auth for you');
+
+	@channels;
+}
+
 1;
 __END__
